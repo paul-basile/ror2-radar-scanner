@@ -7,11 +7,11 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-brand">
                 <img src={logoImage} alt="Radar Scanner" width="50px"/>
-                <Link to="/">Radar Scanner</Link>
+                <Link to="/">RoR2 Radar Scanner</Link>
             </div>
             <div className="navbar-links">
                 <Link to="/" className="nav-link">Home</Link>
-                <Link to="/favorites" className="nav-link">View Saved Items</Link>
+                <Link to="/saved-items" className="nav-link">View Saved Items</Link>
             </div>
         </nav>
     )
