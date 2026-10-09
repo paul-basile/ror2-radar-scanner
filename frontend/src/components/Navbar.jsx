@@ -11,7 +11,7 @@ function Navbar() {
             </div>
             <div className="navbar-links">
                 <Link to="/" className="nav-link">Home</Link>
-                <Link to="/saved-items" className="nav-link">View Saved Items</Link>
+                <Link to="/saved-items" className="nav-link">Create Item Plan</Link>
             </div>
         </nav>
     )

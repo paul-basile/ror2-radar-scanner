@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { ITEMS } from '../data/items.js';
 import ItemCard from './ItemCard.jsx';
 import Searchbar from './Searchbar.jsx';
-import '../css/Home.css';
+import '../css/HomeAndSearch.css';
 
-function Home() {
+function Home({ savedItems, toggleSaveItem }) {
 
     /* 
         State: something where once it is updated, the component rerenders itself to show the new state. When you're writing something like a form (search), you want
@@ -17,12 +17,18 @@ function Home() {
     */
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [refreshCount, setRefreshCount] = useState(0);
 
   const filteredItems = ITEMS.filter((item) => {            /* results after searching */
     return item.name
       .toLowerCase()
       .includes(searchQuery.trim().toLowerCase());
   });
+
+  const handleRefresh = () => {
+    setSearchQuery('');
+    setRefreshCount((previousCount) => previousCount + 1);  /* refreshes page/clears search bar */
+  };
     
   /* extracts the items with .map() and filters them based on input */
   return (
@@ -41,12 +47,19 @@ function Home() {
       <div className="item-grid">                           
         {filteredItems.length > 0 ? (
           filteredItems.map((item) => (                 /* after a search, filteredItems processes the new input after the arrow function here again and again */
-            <ItemCard key={item.id} item={item} />
+            <ItemCard key={item.id} item={item} isSaved={savedItems.includes(item.id)} toggleSaveItem={toggleSaveItem}/>
           ))
         ) : (
           <p>No items found matching "{searchQuery}"</p>
         )}
       </div>
+      <button
+        type="button"
+        className="refresh-btn"
+        onClick={handleRefresh}
+      >
+        Refresh Items
+      </button>
     </div>
   );
 }
