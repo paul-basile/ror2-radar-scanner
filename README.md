@@ -6,5 +6,5 @@ With this website, you can browse and search for Risk of Rain 2 items, view rari
 API Configuration coming soon.
 
 # Disclaimer
-I began this project's foundation from learning by video and researching online, and I used AI to help display my data and complete the rest of the website's functionality.
+I began this project's foundation from learning by video and researching online, and I used AI to help display my data and complete the rest of the website's functionality. The comments are all written by me, though.
 I plan to build a separate React project without AI or deadlines.
