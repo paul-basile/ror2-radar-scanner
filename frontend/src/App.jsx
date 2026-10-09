@@ -1,17 +1,29 @@
 
-import './css/App.css'
-import Navbar from './components/Navbar.jsx'
-import {Routes, Route} from "react-router-dom"  /* want this to be able to navigate between different pages. With Routes, we can define each path, like /home, /favorites */
+import './css/App.css';
+import Navbar from './components/Navbar.jsx';
+import Home from './components/Home.jsx';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
+
+  /* App() here is essentially a container of components in itself, only handling routing and order of components */
+
   return (
-    <div>
+    <div className="app">
       <Navbar />
+
       <main className="main-content">
-        <Home></Home>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/saved-items"
+            element={<h2>Saved Items - Coming Soon</h2>}
+          />
+          <Route path="*" element={<h2>Page Not Found</h2>} />
+        </Routes>
       </main>
     </div>
   );
 }
 
-export default App
+export default App;

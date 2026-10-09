@@ -1,37 +1,53 @@
-import ItemCard from '../components/ItemCard,jsx'
-import {useState} from 'react'
+
+import { useState } from 'react';
+import { ITEMS } from '../data/items.js';
+import ItemCard from './ItemCard.jsx';
+import Searchbar from './Searchbar.jsx';
 
 function Home() {
 
-    const handleSearch = (e) => {
-        e.preventDefault();     /* prevents the default state from appearing */
-        alert(searchQuery);
-        setSearchQuery("");
-    }
+    /* 
+        State: something where once it is updated, the component rerenders itself to show the new state. When you're writing something like a form (search), you want
+        to have the form elements connected to a piece of state, that which you can use in your component however you want
 
-    const [searchQuery, setSearchQuery] = useState("");
+        searchQuery = name of the state
+        setSearchQuery = function that allows you to update the state
+        useState() = default value of the state
+    */
 
-    return (
-        <div className="home">
+  const [searchQuery, setSearchQuery] = useState('');
 
-            <form onSubmit={handleSearch} className="search-form">
-                <input type="text" 
-                    placeholder="Search for items..." 
-                    className="search-input" 
-                    value={searchQuery} 
-                    onChange={(e) => setSearchQuery(e.target.value)} /* onChange, we get e which is the change, then we get e.target.value and set state equal to that */
-                />
-                <button type="submit" className="search-button">Search</button>
-            </form>
+  const filteredItems = ITEMS.filter((item) => {            /* results after searching */
+    return item.name
+      .toLowerCase()
+      .includes(searchQuery.trim().toLowerCase());
+  });
+    
+  /* extracts the items with .map() and filters them based on input */
+  return (
+    <div className="home">
+      <h1>Risk of Rain 2 Items</h1>
 
-            <div className="item-grid">
-                {items.map(item => (
-                    item.title.toLowerCase().startsWith(searchQuery) && ( <ItemCard item={item} key={item.id}/> )
-                ))}
-            </div>
+      <Searchbar                                            /* separate searchbar component */
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
 
-        </div>
-    )
+      <p className="results-count">
+        Showing {filteredItems.length} of {ITEMS.length} items
+      </p>
+
+      <div className="item-grid">                           
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item) => (                 /* after a search, filteredItems processes the new input after the arrow function here again and again */
+            <ItemCard key={item.id} item={item} />
+          ))
+        ) : (
+          <p>No items found matching "{searchQuery}"</p>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
