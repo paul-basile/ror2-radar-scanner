@@ -1,3 +1,5 @@
+import '../css/HomeAndSearch.css'
+
 function Searchbar({ searchQuery, setSearchQuery }) {
   const handleSearch = (e) => {                             /* prevents the default state from appearing */
     e.preventDefault();

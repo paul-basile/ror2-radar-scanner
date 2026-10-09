@@ -1,3 +1,5 @@
+import '../css/HomeAndSearch.css'
+
 function ItemCard ({item}) {
 
     function onAddClick() {

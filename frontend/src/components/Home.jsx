@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ITEMS } from '../data/items.js';
 import ItemCard from './ItemCard.jsx';
 import Searchbar from './Searchbar.jsx';
+import '../css/Home.css';
 
 function Home() {
 
