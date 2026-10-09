@@ -8,3 +8,6 @@ API Configuration coming soon.
 # Disclaimer
 I began this project's foundation from learning by video and researching online, then I used AI to help display my data and complete the rest of the website's functionality. The comments are all written by me, though.
 I plan to build a separate React project without AI or deadlines.
+
+# Netlify Link
+https://ror2radarscanner.netlify.app/
